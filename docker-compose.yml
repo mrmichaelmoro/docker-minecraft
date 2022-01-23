@@ -2,22 +2,25 @@
 version: "3.3"
 
 services:
-  mc:
-    image: itzg/minecraft-server
+  mc_server:
+    build: .
     ports:
       - 25565:25565
+      - 8000:80
     restart: always
     environment:
       # Environment variables are available https://github.com/itzg/docker-minecraft-server#server-configuration
       # Variables defined here are only applied the first time the container is built unless OVERRIDE_SERVER_PROPERTIES
       # is set to TRUE. Changes will be written to servers.properties on your MC server instance.
-      EULA: "TRUE"
       OVERRIDE_SERVER_PROPERTIES: "TRUE"
+
+      EULA: "TRUE"
       ONLINE_MODE: "FALSE"
 
       SERVER_NAME: "Our Minecraft Server"
       MOTD: "Please play responsibly."
       
+      # peaceful, easy, normal, hard
       DIFFICULTY: "normal"
       MODE: "creative"
 
